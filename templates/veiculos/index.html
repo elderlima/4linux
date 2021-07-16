@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Veiculos</h1>
+
+<table>
+    <tr>
+        <td>Nome</td>
+        <td>ID</td>
+        <td>Ações</td>
+    </tr>
+
+{% for veiculo in Veiculos %}
+    <tr>
+        <td>{{ veiculo.nome }}</td>
+        <td>{{ veiculo._id }}</td>
+        <td>
+            <a href="{{ url_for('veiculos.editar_veiculo', id=veiculo._id) }}">Editar</a>
+            <a href="#">Deletar</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
