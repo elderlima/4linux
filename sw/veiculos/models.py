@@ -18,3 +18,8 @@ def modificar_veiculo(oid, veiculo):
         oid,
         {"$set": veiculo}
     )
+
+def deletar_veiculos(oid):
+    if isinstance(oid, str):
+        oid = {"_id": ObjectId(oid)}
+    return db.veiculos.delete_one(oid)

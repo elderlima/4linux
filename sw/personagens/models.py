@@ -18,3 +18,8 @@ def modificar_personagem(oid, personagem):
         oid,
         {"$set": personagem}
     )
+
+def deletar_personagens(oid):
+    if isinstance(oid, str):
+        oid = {"_id": ObjectId(oid)}
+    return db.personagens.delete_one(oid)

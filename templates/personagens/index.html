@@ -16,9 +16,12 @@
         <td>{{ personagem._id }}</td>
         <td>
             <a href="{{ url_for('personagens.editar_personagem', id=personagem._id) }}">Editar</a>
-            <a href="#">Deletar</a>
+            <a href="{{ url_for('personagens.deletar_personagens', id=personagem._id) }}">Deletar</a>
         </td>
     </tr>
 {% endfor %}
+    <tr>
+        <td><a href="{{ url_for('personagens.criar_personagem') }}">+</a></td>
+    </tr>
 </table>
 {% endblock %}

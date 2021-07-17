@@ -16,9 +16,14 @@
         <td>{{ veiculo._id }}</td>
         <td>
             <a href="{{ url_for('veiculos.editar_veiculo', id=veiculo._id) }}">Editar</a>
-            <a href="#">Deletar</a>
+            <a href="{{ url_for('veiculos.deletar_veiculos', id=veiculo._id) }}">Deletar</a>
         </td>
     </tr>
 {% endfor %}
+
+    <tr>
+        <td><a href="{{ url_for('veiculos.criar_veiculo') }}">+</a></td>
+    </tr>
+
 </table>
 {% endblock %}

@@ -23,6 +23,23 @@ def editar_veiculo(id):
         models.modificar_veiculo(id, {'nome': novo_nome})
         return flask.redirect(flask.url_for("veiculos.index"))
 
+@bp.route("/criar", methods=["GET", "POST"])
+def criar_veiculo():
+    if flask.request.method == 'GET':
+        return flask.render_template("veiculos/edit.html", verbo="Criar")
+    
+    elif flask.request.method == 'POST':
+        nome = flask.request.form['veiculo_nome']
+        models.criar_veiculos({'nome': nome})
+        return flask.redirect(flask.url_for("veiculos.index"))
+
+@bp.route("/<id>/deletar")
+def deletar_veiculos(id):
+    models.deletar_veiculos(id)
+    return flask.redirect(flask.url_for("veiculos.index"))
+
+
+#### API #####
 
 @bp.route("api")
 def listar_veiculos():
@@ -30,7 +47,7 @@ def listar_veiculos():
     return flask.Response(veiculo, headers=cabecalhos)
 
 @bp.route("api", methods=["POST"])
-def criar_veiculo():
+def criar_veiculo_api():
     veiculo = flask.request.json
     result = models.criar_veiculos(veiculo)
     return flask.jsonify({"id": str(result.inserted_id)})

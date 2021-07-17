@@ -18,3 +18,8 @@ def modificar_naves(oid, nave):
         oid,
         {"$set": nave}
     )
+
+def deletar_naves(oid):
+    if isinstance(oid, str):
+        oid = {"_id": ObjectId(oid)}
+    return db.naves.delete_one(oid)
