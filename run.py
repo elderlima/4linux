@@ -1,5 +1,7 @@
+import docker
 import flask
-import config.db
+# import config.db
+from config.db import setup
 import sw.naves.blueprint as naves
 import sw.personagens.blueprint as personagens
 import sw.veiculos.blueprint as veiculos
@@ -17,5 +19,7 @@ def home():
     return 'home'
 
 if __name__ == "__main__":
-    config.db.setup()
+    docker.DockerClient().containers.get('mongo-sw').start()
+    # config.db.setup()
+    setup()
     app.run(debug=True)
